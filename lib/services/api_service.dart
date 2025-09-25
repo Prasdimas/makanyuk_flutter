@@ -27,4 +27,27 @@ class ApiService {
       throw Exception('Failed fetch recipe detail: ${resp.statusCode}');
     }
   }
+
+  Future<List<String>> fetchRecipeTags() async {
+    final url = Uri.parse('$baseUrl/recipes/tags');
+    final resp = await http.get(url);
+    if (resp.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(resp.body);
+      return data.map((e) => e.toString()).toList();
+    } else {
+      throw Exception('Failed to fetch tags: ${resp.statusCode}');
+    }
+  }
+
+  Future<List<Recipe>> fetchRecipesByTag(String tag) async {
+    final url = Uri.parse('$baseUrl/recipes/tag/$tag');
+    final resp = await http.get(url);
+    if (resp.statusCode == 200) {
+      final data = jsonDecode(resp.body);
+      final List recipesJson = data['recipes'];
+      return recipesJson.map((j) => Recipe.fromJson(j)).toList();
+    } else {
+      throw Exception('Failed fetch by tag: ${resp.statusCode}');
+    }
+  }
 }

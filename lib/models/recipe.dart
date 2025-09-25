@@ -8,6 +8,7 @@ class Recipe {
   final int cookTimeMinutes;
   final int servings;
   final double rating;
+  final List<String> tags;
 
   Recipe({
     required this.id,
@@ -19,6 +20,7 @@ class Recipe {
     required this.cookTimeMinutes,
     required this.servings,
     required this.rating,
+    required this.tags,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class Recipe {
       rating: (json['rating'] is int)
           ? (json['rating'] as int).toDouble()
           : (json['rating'] as double? ?? 0.0),
+      tags: List<String>.from(json['tags'] ?? []),
     );
   }
 }
