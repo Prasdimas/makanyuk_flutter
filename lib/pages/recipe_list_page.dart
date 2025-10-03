@@ -78,7 +78,25 @@ class _RecipeListPageState extends State<RecipeListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ... appBar dan tag card ...
+ appBar: AppBar(
+         backgroundColor: const Color.fromARGB(255, 36, 3, 126),
+           iconTheme: IconThemeData(color: Colors.white), 
+       title: Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Icon(Icons.restaurant_menu, color: Colors.white), 
+    SizedBox(width: 10),
+    Text(
+      'MakanYuk',
+      style: TextStyle(
+        fontSize: 25,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ],
+),
+        ),
       body: Column(
         children: [
           // search bar
